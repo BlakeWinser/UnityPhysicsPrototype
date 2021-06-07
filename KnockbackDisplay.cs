@@ -12,7 +12,7 @@ public class KnockbackDisplay : MonoBehaviour
         textDisplay.text = knockback.ToString() + "%";
     }
 
-    public void setCurrentKnockback(float knockback)
+    public void SetCurrentKnockback(float knockback)
     {
         textDisplay.text = knockback.ToString() + "%";
     }

@@ -9,9 +9,9 @@ public class GunSystem : MonoBehaviour
     public float damage;
     public float pauseBetweenShooting, spread, range, reloadTime, pauseBetweenShots;
     public float magSize, bulletsPerTap;
-    public bool triggerHeld;
+    public bool autoFire;
 
-    float bulletsLeft, bulletsShot;
+    int bulletsLeft, bulletsShot;
 
     bool shooting, readyToShoot, reloading;
 
@@ -26,21 +26,14 @@ public class GunSystem : MonoBehaviour
 
     private void Update()
     {
-        MyInput();
+        DoInput();
 
-        uiAmmoCounter.setCurrentAmmo(bulletsLeft + "/" + magSize);
+        uiAmmoCounter.UpdateAmmoDisplay(bulletsLeft, magSize);
     }
 
-    private void MyInput()
+    private void DoInput()
     {
-        if (triggerHeld) 
-        { 
-            shooting = Input.GetKey(KeyCode.Mouse0); 
-        }
-        else
-        {
-            shooting = Input.GetKeyDown(KeyCode.Mouse0);
-        }
+        shooting = autoFire ? Input.GetKey(KeyCode.Mouse0) : Input.GetKeyDown(KeyCode.Mouse0);
 
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magSize && !reloading)
         {

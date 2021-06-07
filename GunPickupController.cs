@@ -37,14 +37,14 @@ public class GunPickupController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 distanceToPlayer = player.position - transform.position;
+        Vector3 distanceToPlayer = Vector3.Distance(player.position, transform.position);
 
-        if (!equipped && distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.E) && !slotFull)
+        if (Input.GetKeyDown(KeyCode.E) && !equipped && distanceToPlayer <= pickupRange && !slotFull)
         {
             PickUp();
         }
 
-        if (equipped && Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && equipped)
         {
             Drop();
         }
