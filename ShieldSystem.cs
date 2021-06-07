@@ -10,19 +10,14 @@ public class ShieldSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
-            ShieldToggle();
+            shield.SetActive(true);
         }
         else
         {
             shield.SetActive(false);
         }
-    }
-
-    void ShieldToggle()
-    {
-        shield.SetActive(true);
     }
 
     void ShieldDamage()
